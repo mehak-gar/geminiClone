@@ -37,6 +37,9 @@ body {
 .chat-list .message .text {
     color: var(--text-color);
 }
+.chat-list .message .text.error {
+    color:#e55865;
+}
 
 .header,
 .typing-form,
@@ -48,10 +51,15 @@ body {
 .header {
     padding: 1rem;
     /******************************For now******************************/
-    /* margin-top: 7vh; */
-    display: none;
+    margin-top: 7vh;
+    /* display: none; */
 }
 
+body.hide-header .header
+{
+    display:none;
+    margin-top: 0;
+}
 .header :where(.title, .subtitle) {
     font-weight: 500;
     line-height: 3.6rem;
@@ -117,6 +125,7 @@ body {
     padding: 2rem 1rem 12rem;
     max-height: 100vh;
     overflow-y: auto;
+    scrollbar-color: #999 transparent;
 }
 
 .chat-list .message .incoming {
@@ -170,7 +179,7 @@ display: none;
 }
 
 
-.chat-list .message:not(.loading):hover .icon {
+.chat-list .message:not(.loading):hover .icon:not(.hide) {
     visibility: visible;
 
 }
@@ -182,12 +191,15 @@ display: none;
 
 
 .chat-list .loading-indicator {
-    display: flex;
+    display: none;
     width: 100%;
     gap: 0.8rem;
     flex-direction: column;
 }
 
+.chat-list .message.loading .loading-indicator{
+    display: flex;
+}
 .chat-list .loading-indicator .loading-bar {
     height: 0.6rem;
     width: 100%;
